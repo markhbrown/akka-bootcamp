@@ -53,6 +53,9 @@
   <ItemGroup>
     <Compile Include="ConsoleReaderActor.cs" />
     <Compile Include="ConsoleWriterActor.cs" />
+    <Compile Include="Messages\ErrorMessages.cs" />
+    <Compile Include="Messages\NeutralMessages.cs" />
+    <Compile Include="Messages\SuccessMessages.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
