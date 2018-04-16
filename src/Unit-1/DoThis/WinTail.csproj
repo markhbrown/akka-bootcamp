@@ -53,11 +53,16 @@
   <ItemGroup>
     <Compile Include="ConsoleReaderActor.cs" />
     <Compile Include="ConsoleWriterActor.cs" />
+    <Compile Include="FileObserver.cs" />
+    <Compile Include="FileValidatorActor.cs" />
     <Compile Include="Messages\ErrorMessages.cs" />
     <Compile Include="Messages\NeutralMessages.cs" />
     <Compile Include="Messages\SuccessMessages.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TailActor.cs" />
+    <Compile Include="TailCoordinatorActor.cs" />
+    <Compile Include="ValidationActor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
