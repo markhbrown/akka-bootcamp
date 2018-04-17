@@ -8,9 +8,9 @@ namespace WinTail
     {
         private readonly string _filePath;
         private readonly IActorRef _reporterActor;
-        private readonly FileObserver _observer;
-        private readonly Stream _fileStream;
-        private readonly StreamReader _fileStreamReader;
+        private FileObserver _observer;
+        private Stream _fileStream;
+        private StreamReader _fileStreamReader;
 
 
         /// <summary>
@@ -63,8 +63,13 @@ namespace WinTail
             _reporterActor = reporterActor;
             _filePath = filePath;
 
+
+        }
+
+        protected override void PreStart()
+        {
             // start watching file for changes
-            _observer = new FileObserver(Self, Path.GetFullPath(filePath));
+            _observer = new FileObserver(Self, Path.GetFullPath(_filePath));
             _observer.Start();
 
             // open the file stream with shared read / write permissions
@@ -97,6 +102,16 @@ namespace WinTail
                 var ir = message as InitialRead;
                 _reporterActor.Tell(ir.Text);
             }
+        }
+
+        protected override void PostStop()
+        {
+            _observer.Dispose();
+            _observer = null;
+            _fileStreamReader.Close();
+            _fileStreamReader.Dispose();
+            base.PostStop();
+
         }
     }
 }
